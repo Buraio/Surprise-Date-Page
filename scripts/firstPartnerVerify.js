@@ -1,7 +1,9 @@
-import { changeButtonText } from "./buttons.js";
+import { changeButtonText, removeNoBtnEvent } from "./buttons.js";
 
 const generateSecondPopup = (formElement) => {
   const noBtn = document.querySelectorAll(".question-btn")[1];
+
+  removeNoBtnEvent(noBtn);
 
   noBtn.classList.remove("yes");
   noBtn.classList.add("no");

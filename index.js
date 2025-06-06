@@ -8,7 +8,9 @@ const formButtons = document.getElementsByClassName("question-btn");
 const yesBtn = formButtons[0];
 const noBtn = formButtons[1];
 
-formElement.addEventListener("submit", (e) => e.preventDefault());
+formElement.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 nextSectionBtnEvent(yesBtn);
 

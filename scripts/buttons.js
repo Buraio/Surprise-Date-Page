@@ -3,10 +3,7 @@ import {
   generateSecondPopup,
   generateThirdPopup,
 } from "./firstPartnerVerify.js";
-import {
-  generateFirstForm,
-  generateSecondForm,
-} from "./secondPartnerVerify.js";
+import { generateFirstForm } from "./secondPartnerVerify.js";
 
 let mouseClickCounter = 0;
 
@@ -19,7 +16,7 @@ const changeButtonText = (btn1Text, btn2Text) => {
 
 const nextSectionBtnEvent = (btnElement) => {
   const formElement = document.getElementById("main-form");
-  const sections = ["first", "second", "third", "fourth", "fifth"];
+  const sections = ["first", "second", "third"];
 
   btnElement.addEventListener("click", () => {
     for (let i = 0; i < 5; i++) {
@@ -36,8 +33,6 @@ const nextSectionBtnEvent = (btnElement) => {
           case "third":
             generateFirstForm(formElement);
             break;
-          case "fourth":
-            generateSecondForm(formElement);
         }
         break;
       }
@@ -61,17 +56,34 @@ const makeRunawayButton = () => {
   mouseClickCounter++;
 
   if (mouseClickCounter === 6) {
-    noBtn.removeEventListener("mouseover", makeRunawayButton);
-    noBtn.style.position = "relative";
-    noBtn.style.top = "0px";
-    noBtn.style.left = "0px";
+    removeNoBtnEvent(noBtn);
 
     noBtn.innerText = "SIM!";
     noBtn.classList.remove("no");
     noBtn.classList.add("yes");
 
-    nextSectionBtnEvent(noBtn);
+    noBtn.addEventListener("click", () => {
+      const formElement = document.getElementById("main-form");
+      generateSecondPopup(formElement);
+    });
   }
 };
 
-export { changeButtonText, makeRunawayButton, nextSectionBtnEvent };
+const removeNoBtnEvent = (element) => {
+  element.removeEventListener("mouseover", makeRunawayButton);
+  element.style.position = "relative";
+  element.style.top = "0px";
+  element.style.left = "0px";
+};
+
+// const createNextPageEvent = () => {
+//   const nextPageBtn = document.querySelector(".next-page");
+//   nextPageBtn.addEventListener("click");
+// };
+
+export {
+  changeButtonText,
+  makeRunawayButton,
+  nextSectionBtnEvent,
+  removeNoBtnEvent,
+};
