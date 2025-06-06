@@ -1,6 +1,11 @@
 import { changeButtonText } from "./buttons.js";
 
 const generateSecondPopup = (formElement) => {
+  const noBtn = document.querySelectorAll(".question-btn")[1];
+
+  noBtn.classList.remove("yes");
+  noBtn.classList.add("no");
+
   formElement.classList.remove("first");
   formElement.classList.add("second");
 

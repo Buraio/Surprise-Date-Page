@@ -1,38 +1,17 @@
-import {
-  generateSecondPopup,
-  generateThirdPopup,
-} from "./scripts/firstPartnerVerify.js";
-import {
-  generateFirstForm,
-  generateSecondForm,
-} from "./scripts/secondPartnerVerify.js";
+import { makeRunawayButton, nextSectionBtnEvent } from "./scripts/buttons.js";
 
 const formElement = document.getElementById("main-form");
-const sections = ["first", "second", "third", "fourth", "fifth"];
-
 formElement.classList.add("first");
 
-formElement.addEventListener("submit", (e) => {
-  e.preventDefault();
+const formButtons = document.getElementsByClassName("question-btn");
 
-  for (let i = 0; i < 5; i++) {
-    const formCurrentClass = formElement.classList.contains(sections[i]);
+const yesBtn = formButtons[0];
+const noBtn = formButtons[1];
 
-    if (formCurrentClass) {
-      switch (sections[i]) {
-        case "first":
-          generateSecondPopup(formElement);
-          break;
-        case "second":
-          generateThirdPopup(formElement);
-          break;
-        case "third":
-          generateFirstForm(formElement);
-          break;
-        case "fourth":
-          generateSecondForm(formElement);
-      }
-      break;
-    }
-  }
-});
+formElement.addEventListener("submit", (e) => e.preventDefault());
+
+nextSectionBtnEvent(yesBtn);
+
+noBtn.addEventListener("click", makeRunawayButton);
+
+export { yesBtn, noBtn };
