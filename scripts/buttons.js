@@ -61,7 +61,7 @@ const makeRunawayButton = () => {
   mouseClickCounter++;
 
   if (mouseClickCounter === 6) {
-    noBtn.removeEventListener("click", makeRunawayButton);
+    noBtn.removeEventListener("mouseover", makeRunawayButton);
     noBtn.style.position = "relative";
     noBtn.style.top = "0px";
     noBtn.style.left = "0px";

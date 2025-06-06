@@ -12,6 +12,6 @@ formElement.addEventListener("submit", (e) => e.preventDefault());
 
 nextSectionBtnEvent(yesBtn);
 
-noBtn.addEventListener("click", makeRunawayButton);
+noBtn.addEventListener("mouseover", makeRunawayButton);
 
 export { yesBtn, noBtn };
