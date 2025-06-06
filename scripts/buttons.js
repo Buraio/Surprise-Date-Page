@@ -3,7 +3,10 @@ import {
   generateSecondPopup,
   generateThirdPopup,
 } from "./firstPartnerVerify.js";
-import { generateFirstForm } from "./secondPartnerVerify.js";
+import {
+  generateFirstForm,
+  generateSecondForm,
+} from "./secondPartnerVerify.js";
 
 let mouseClickCounter = 0;
 
@@ -76,14 +79,20 @@ const removeNoBtnEvent = (element) => {
   element.style.left = "0px";
 };
 
-// const createNextPageEvent = () => {
-//   const nextPageBtn = document.querySelector(".next-page");
-//   nextPageBtn.addEventListener("click");
-// };
+const createNextPageEvent = () => {
+  const formElement = document.getElementById("main-form");
+
+  formElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    generateSecondForm(formElement);
+  });
+};
 
 export {
   changeButtonText,
   makeRunawayButton,
   nextSectionBtnEvent,
   removeNoBtnEvent,
+  createNextPageEvent,
 };

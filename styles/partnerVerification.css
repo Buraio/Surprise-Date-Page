@@ -1,5 +1,6 @@
 #main-form {
   width: 55%;
+  max-width: 800px;
   min-height: 250px;
   height: auto;
   padding: 25px;
