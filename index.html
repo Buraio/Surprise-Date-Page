@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="./styles/background.css" />
     <link rel="stylesheet" href="./styles/partnerVerification.css" />
     <link rel="stylesheet" href="./styles/firstForm.css" />
-    <title>VOCÊ RECEBEU UM PRESENTE!</title>
+    <link rel="stylesheet" href="./styles/popup.css" />
+    <title>VOCÊ RECEBEU UMA SURPRESA!</title>
   </head>
   <body>
     <main class="background">
-      <form id="main-form">
+      <button class="background-button">Ver imagem de fundo</button>
+      <div id="main-form" class="first">
         <p class="main-text">
           ESSE É UM PRESENTE CONFIDENCIAL E EXCLUSIVO. TEM CERTEZA QUE FOI PARA
           VOCÊ E DESEJA ABRÍ-LO??
@@ -20,8 +22,21 @@
           <button class="question-btn yes">SIM</button>
           <button class="question-btn no">NÃO</button>
         </div>
-      </form>
+      </div>
     </main>
+
+    <div class="popup-background hidden">
+      <div class="popup-container">
+        <div class="popup-header">
+          <h3 class="popup-title"></h3>
+          <img class="close-popup" src="./assets/icons/xIcon.svg" alt="" />
+        </div>
+        <hr />
+        <div class="popup-body">
+          <p class="popup-description"></p>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script type="module" src="./index.js"></script>

@@ -1,19 +1,12 @@
-import { makeRunawayButton, nextSectionBtnEvent } from "./scripts/buttons.js";
+import { createNoBtnEvent } from "./scripts/validation.js";
+import { createPopupCloseEvent } from "./scripts/popup.js";
+import { createYesBtnEvent } from "./scripts/validation.js";
+import { toggleBackgroundImgEvent } from "./scripts/background.js";
 
-const formElement = document.getElementById("main-form");
-formElement.classList.add("first");
+createPopupCloseEvent();
 
-const formButtons = document.getElementsByClassName("question-btn");
+createYesBtnEvent();
 
-const yesBtn = formButtons[0];
-const noBtn = formButtons[1];
+createNoBtnEvent();
 
-formElement.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
-
-nextSectionBtnEvent(yesBtn);
-
-noBtn.addEventListener("mouseover", makeRunawayButton);
-
-export { yesBtn, noBtn };
+toggleBackgroundImgEvent();
