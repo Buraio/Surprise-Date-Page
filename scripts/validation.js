@@ -75,8 +75,6 @@ const secondValidationNoBtnEvent = () => {
   noBtn.addEventListener("click", genSecondNameValidation);
 };
 
-
-
 // Element changing functions
 
 const genFirstNameValidation = () => {

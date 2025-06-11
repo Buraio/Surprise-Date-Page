@@ -4,6 +4,9 @@ const mainContainer = document.getElementById("main-form");
 const popupBack = document.querySelector(".popup-background");
 const closePopupImg = document.querySelector(".close-popup");
 
+let isFirstFormComplete = false;
+let isSecondFormComplete = false;
+
 // First and second form generation
 
 const genFirstForm = () => {
@@ -70,7 +73,17 @@ const firstFormValidationEvent = () => {
 
     getAndValidateFirstFormAnswers();
 
-    // genSecondForm(formElement);
+    genSecondForm();
+  });
+};
+
+const secondFormValidationEvent = () => {
+  const formElement = document.getElementById("main-form");
+
+  formElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    getAndValidateFirstFormAnswers();
   });
 };
 
@@ -80,16 +93,16 @@ const getAndValidateFirstFormAnswers = () => {
   const inputElements = document.querySelectorAll(".base-input");
 
   const correctAnswers = {
-    firstName: "Isabelly",
-    secondName: "Coração",
-    favMeadow: "Lasanha",
+    firstName: "isabelly",
+    secondName: "coração",
+    favMeadow: "lasanha",
     beautyLevel: 11,
   };
 
   const formAnswers = {
-    firstName: inputElements[0].value,
-    secondName: inputElements[1].value,
-    favMeadow: inputElements[2].value,
+    firstName: inputElements[0].value.toLowerCase(),
+    secondName: inputElements[1].value.toLowerCase(),
+    favMeadow: inputElements[2].value.toLowerCase(),
     beautyLevel: inputElements[3].value,
   };
 
@@ -107,7 +120,9 @@ const getAndValidateFirstFormAnswers = () => {
 
   if (formAnswers.firstName === correctAnswers.firstName) {
     if (formAnswers.favMeadow === correctAnswers.favMeadow) {
+      console.log(1111);
       if (formAnswers.secondName !== "Coração") {
+        console.log("fasdfsafadsfasdfdsadafdfsdf");
         if (formAnswers.beautyLevel !== 11) {
           createPopupInfoAndShow(
             "Erro",
@@ -119,7 +134,10 @@ const getAndValidateFirstFormAnswers = () => {
 
           inputElements[1].value = "Coração";
           inputElements[3].value = 11;
-        } else {
+        }
+      } else {
+        if (formAnswers.beautyLevel === 11) {
+          console.log();
           createPopupInfoAndShow(
             "Incrível",
             "Como você acertou todas as respostas? Deve ser ela",
@@ -153,6 +171,10 @@ const showAnotherPopup = () => {
   );
 
   closePopupImg.removeEventListener("click", showAnotherPopup);
+};
+
+const getAndValidateSecondFormAnswers = () => {
+  const inputElements = document.querySelectorAll(".base-input");
 };
 
 export { genFirstForm, genSecondForm };
