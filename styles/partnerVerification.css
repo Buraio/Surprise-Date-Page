@@ -1,4 +1,4 @@
-#main-form {
+#content-container {
   width: 55%;
   max-width: 800px;
   min-height: 250px;
@@ -20,7 +20,7 @@
 }
 
 .btn-container {
-  width: 350px;
+  width: 400px;
   height: auto;
   display: flex;
   justify-content: space-between;
@@ -30,11 +30,12 @@
 .question-btn {
   min-width: 90px;
   width: auto;
-  height: 45px;
+  height: 50px;
   padding: 0px 20px;
   border: none;
   font-size: 15px;
   border-radius: 5px;
+  border: 2px solid #3b3b3b
 }
 
 .no {

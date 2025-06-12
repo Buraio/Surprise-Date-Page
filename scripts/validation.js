@@ -3,7 +3,7 @@ import { createPopupInfoAndShow } from "./popup.js";
 
 const sections = ["first", "second", "third"];
 
-const mainContainer = document.getElementById("main-form");
+const mainContainer = document.getElementById("content-container");
 const mainTextParagraph = document.querySelector(".main-text");
 const questionButtons = document.getElementsByClassName("question-btn");
 
@@ -41,7 +41,6 @@ const createNoBtnEvent = () => {
   if (mainContainer.classList.contains("first")) {
     noBtn.addEventListener("click", firstValidationNoBtnEvent);
   } else if (mainContainer.classList.contains("second")) {
-    console.log("fsadfdsafasddfasf");
     noBtn.addEventListener("click", secondValidationNoBtnEvent);
   } else if (mainContainer.classList.contains("third")) {
   }
@@ -94,6 +93,11 @@ const genFirstNameValidation = () => {
 
 const genSecondNameValidation = () => {
   noBtn.classList.remove("hidden");
+  // noBtn.classList.remove("yes");
+
+  // if (!noBtn.classList.contains("no")) {
+  //   noBtn.classList.add("no");
+  // }
 
   mainContainer.classList.remove("second");
   mainContainer.classList.add("third");

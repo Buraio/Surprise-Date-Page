@@ -5,18 +5,24 @@
   padding: 20px;
 }
 
-.main-container {
+.main-form {
   height: 400px;
+  padding: 25px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
 }
 
 .input-container {
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 30px;
+}
+
+#favorite-music {
+  width: 100%;
 }
 
 .page-sidebar {
@@ -40,12 +46,15 @@
   align-items: center;
 }
 
-.next-page {
-  width: 125px;
-  height: 40px;
+.form-btn {
+  width: 140px;
+  height: 45px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
+  background-color: #fff;
+  border: 3px solid #4444ff;
+  color: #4444ff;
 }
 
 .sidebar {
@@ -59,11 +68,20 @@
   font-size: 18px;
   top: -40px;
   left: 25px;
-  color: rgb(0, 0, 0, 0.75)
+  color: rgb(0, 0, 0, 0.75);
 }
 
 .base-label > input {
   width: 250px;
   height: 35px;
   font-size: 22px;
+  border: 2px solid black;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

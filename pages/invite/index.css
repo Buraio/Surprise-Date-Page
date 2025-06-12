@@ -55,8 +55,9 @@ body {
   transition-duration: 0.2s;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
 }
 
-.btn::hover {
-  scale: 50%;
+.btn:hover {
+  transform: scale(115%);
 }
