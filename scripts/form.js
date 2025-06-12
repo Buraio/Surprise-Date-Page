@@ -109,9 +109,9 @@ const getAndValidateFirstFormAnswers = () => {
   };
 
   const formAnswers = {
-    firstName: inputElements[0].value.toLowerCase(),
-    secondName: inputElements[1].value.toLowerCase(),
-    favMeadow: inputElements[2].value.toLowerCase(),
+    firstName: inputElements[0].value.toLowerCase().trim(),
+    secondName: inputElements[1].value.toLowerCase().trim(),
+    favMeadow: inputElements[2].value.toLowerCase().trim(),
     beautyLevel: Number(inputElements[3].value),
   };
 
@@ -215,8 +215,8 @@ const getAndValidateSecondFormAnswers = () => {
   };
 
   const formAnswers = {
-    favoriteMusic: inputElements[0].value.toLowerCase(),
-    myFavMeadow: inputElements[1].value.toLowerCase(),
+    favoriteMusic: inputElements[0].value.toLowerCase().trim(),
+    myFavMeadow: inputElements[1].value.toLowerCase().trim(),
   };
 
   if (formAnswers.favoriteMusic === correctAnswers.favoriteMusic) {
