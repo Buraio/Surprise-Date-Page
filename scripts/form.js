@@ -39,6 +39,10 @@ const genFirstForm = () => {
 };
 
 const genSecondForm = () => {
+  const popupheader = document.querySelector(".popup-header");
+  popupheader.classList.remove("check");
+  popupheader.classList.add("error");
+
   mainContainer.innerHTML = "";
 
   mainContainer.insertAdjacentHTML(
