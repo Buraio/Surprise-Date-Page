@@ -93,6 +93,11 @@ const genFirstNameValidation = () => {
 
 const genSecondNameValidation = () => {
   noBtn.classList.remove("hidden");
+  // noBtn.classList.remove("yes");
+
+  // if (!noBtn.classList.contains("no")) {
+  //   noBtn.classList.add("no");
+  // }
 
   mainContainer.classList.remove("second");
   mainContainer.classList.add("third");
