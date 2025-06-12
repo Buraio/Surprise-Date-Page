@@ -18,6 +18,10 @@ body {
   background-color: var(--dark-color);
   overflow: hidden;
   perspective: 1000px;
+  font-family: "Rouge Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+
 }
 
 .night {
@@ -1335,4 +1339,17 @@ body {
 .container * {
   -webkit-animation-play-state: paused !important;
           animation-play-state: paused !important;
+}
+
+.last-sentence {
+  position: absolute;
+  max-width: 1400px;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  font-size: 38px;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
 }
