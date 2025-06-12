@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/background.css" />
+    <link rel="stylesheet" href="./styles/partnerVerification.css" />
+    <link rel="stylesheet" href="./styles/firstForm.css" />
+    <link rel="stylesheet" href="./styles/popup.css" />
+    <title>VOCÊ RECEBEU UMA SURPRESA!</title>
+  </head>
+  <body>
+    <main class="background">
+      <button class="background-button">Ver imagem de fundo</button>
+      <div id="content-container" class="first">
+        <p class="main-text">
+          ESSE É UM PRESENTE CONFIDENCIAL E EXCLUSIVO. TEM CERTEZA QUE FOI PARA
+          VOCÊ E DESEJA ABRÍ-LO??
+        </p>
+        <div class="btn-container">
+          <button class="question-btn yes">SIM</button>
+          <button class="question-btn no">NÃO</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="popup-background hidden">
+      <div class="popup-container">
+        <div class="popup-header">
+          <h3 class="popup-title"></h3>
+          <img class="close-popup" src="./assets/icons/xIcon.svg" alt="" />
+        </div>
+        <hr />
+        <div class="popup-body">
+          <p class="popup-description"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="module" src="./index.js"></script>
+</html>
