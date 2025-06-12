@@ -7,6 +7,10 @@ const manageInvite = () => {
 
   acceptInviteBtn.addEventListener("click", () => {
     imgElement.src = "../../assets/img/Bob-Esponja2.jpg";
+
+    window.setTimeout(() => {
+      window.location.replace("../heart/index.html");
+    }, 3000);
   });
 };
 
