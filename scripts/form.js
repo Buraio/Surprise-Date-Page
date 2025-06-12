@@ -5,6 +5,7 @@ const popupBack = document.querySelector(".popup-background");
 const closePopupImg = document.querySelector(".close-popup");
 
 let inviteControl = false;
+let correctNameOrBeauty = "";
 
 // First and second form generation
 
@@ -47,7 +48,8 @@ const genSecondForm = () => {
       <div class="main-container">
         <div class="paragraph-container">
           <p class="form-paragraph">BRINCADEIRA, SÃO SÓ DUAS PÁGINAS</p>
-          <p class="form-paragraph">PORÉM AINDA NÃO ESTOU CONVENCIDA QUE VOCÊ SEJA A ISA. PREENCHA COM SUA MÚSICA FAVORITA ATUALMENTE:</p>
+          <p class="form-paragraph">PORÉM AINDA NÃO ESTOU CONVENCIDA QUE VOCÊ SEJA A ISA.</p>
+          <p class="form-paragraph">PREENCHA COM SUA MÚSICA FAVORITA ATUALMENTE:</p>
         </div>
         <div class="input-container">
           <label class="base-label" for="favorite-music"><input id="favorite-music" class="base-input" type="text"></label>
@@ -99,14 +101,14 @@ const getAndValidateFirstFormAnswers = () => {
     firstName: "isabelly",
     secondName: "coração",
     favMeadow: "lasanha",
-    beautyLevel: "11",
+    beautyLevel: 11,
   };
 
   const formAnswers = {
     firstName: inputElements[0].value.toLowerCase(),
     secondName: inputElements[1].value.toLowerCase(),
     favMeadow: inputElements[2].value.toLowerCase(),
-    beautyLevel: inputElements[3].value,
+    beautyLevel: Number(inputElements[3].value),
   };
 
   for (let key in formAnswers) {
@@ -121,39 +123,47 @@ const getAndValidateFirstFormAnswers = () => {
     }
   }
 
+  const nextPageBtn = document.querySelector(".next-page");
+
   if (formAnswers.firstName === correctAnswers.firstName) {
     if (formAnswers.favMeadow === correctAnswers.favMeadow) {
       console.log(1111);
       if (formAnswers.secondName !== correctAnswers.secondName) {
-        console.log("fasdfsafadsfasdfdsadafdfsdf");
-        if (formAnswers.beautyLevel !== correctAnswers.beautyLevel) {
+        if (formAnswers.beautyLevel < correctAnswers.beautyLevel) {
           createPopupInfoAndShow(
             "Erro",
             "Só isso de beleza? Não é possível...",
             "error"
           );
 
+          correctNameOrBeauty = "both";
+
           closePopupImg.addEventListener("click", showAnotherPopup);
 
           inputElements[1].value = "Coração";
           inputElements[3].value = "11";
 
-          const nextPageBtn = document.querySelector(".next-page");
+          nextPageBtn.addEventListener("click", () => {
+            genSecondForm();
+          });
+          return false;
+        } else {
+          createPopupInfoAndShow(
+            "Erro",
+            "Esse segundo nome não parece certo.",
+            "error"
+          );
+
+          correctNameOrBeauty = "name";
+
+          closePopupImg.addEventListener("click", showAnotherPopup);
+
+          inputElements[1].value = "Coração";
 
           nextPageBtn.addEventListener("click", () => {
             genSecondForm();
           });
           return false;
-        }
-      } else {
-        if (formAnswers.beautyLevel === correctAnswers.beautyLevel) {
-          createPopupInfoAndShow(
-            "Incrível",
-            "Como você acertou todas as respostas?",
-            "check"
-          );
-
-          genSecondForm();
         }
       }
     } else {
@@ -175,11 +185,19 @@ const getAndValidateFirstFormAnswers = () => {
 const showAnotherPopup = () => {
   popupBack.classList.add("hidden");
 
-  createPopupInfoAndShow(
-    "Corrigido",
-    "Agora ficou bem melhor. Dê uma olhada",
-    "check"
-  );
+  if (correctNameOrBeauty === "name") {
+    createPopupInfoAndShow(
+      "Corrigido",
+      "Este deve ser seu nome de verdade.",
+      "check"
+    );
+  } else if (correctNameOrBeauty === "both") {
+    createPopupInfoAndShow(
+      "Corrigido",
+      "Agora ficou bem melhor. Dê uma olhada",
+      "check"
+    );
+  }
 
   closePopupImg.removeEventListener("click", showAnotherPopup);
 };
