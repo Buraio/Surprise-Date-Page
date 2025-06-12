@@ -1,10 +1,8 @@
 const toggleBackgroundImgEvent = () => {
   const backgroundBtn = document.querySelector(".background-button");
-  const mainContainer = document.getElementById("main-form");
+  const mainContainer = document.getElementById("content-container");
 
   backgroundBtn.addEventListener("click", () => {
-    console.log();
-
     if (mainContainer.classList.contains("hidden")) {
       mainContainer.classList.remove("hidden");
       mainContainer.style.display = "flex";

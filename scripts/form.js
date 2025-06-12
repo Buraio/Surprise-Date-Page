@@ -1,11 +1,10 @@
 import { createPopupInfoAndShow } from "./popup.js";
 
-const mainContainer = document.getElementById("main-form");
+const mainContainer = document.getElementById("content-container");
 const popupBack = document.querySelector(".popup-background");
 const closePopupImg = document.querySelector(".close-popup");
 
-let isFirstFormComplete = false;
-let isSecondFormComplete = false;
+let inviteControl = false;
 
 // First and second form generation
 
@@ -29,7 +28,7 @@ const genFirstForm = () => {
       </div>
       <div class="sidebar">
         <span class="page-sidebar">Página 1/27</span>
-        <button class="next-page">Próxima página</button>
+        <button class="form-btn next-page">Próxima página</button>
       </div>
     </form>
     `
@@ -48,43 +47,47 @@ const genSecondForm = () => {
       <div class="main-container">
         <div class="paragraph-container">
           <p class="form-paragraph">BRINCADEIRA, SÃO SÓ DUAS PÁGINAS</p>
-          <p class="form-paragraph">PORÉM AINDA NÃO ESTOU CONVENCIDA QUE VOCÊ SEJA A ISA. PREENCHA COM SUA MÚSICA FAVORITA ATUALMENTE</p>
+          <p class="form-paragraph">PORÉM AINDA NÃO ESTOU CONVENCIDA QUE VOCÊ SEJA A ISA. PREENCHA COM SUA MÚSICA FAVORITA ATUALMENTE:</p>
         </div>
-        <label class="base-label" for="favorite-music"><input id="favorite-music" type="text"></label>
-        <label class="base-label" for="my-favorite-meadow">Meu prato favorito <input id="my-favorite-meadow" type="text"></label>
-        <label class="base-label" for="confirmation">Você quer mesmo abrir este presente? <input id="confirmation" type="text"></label>
+        <div class="input-container">
+          <label class="base-label" for="favorite-music"><input id="favorite-music" class="base-input" type="text"></label>
+          <label class="base-label" for="my-favorite-meadow">Adivinhe meu prato favorito <input id="my-favorite-meadow" class="base-input" type="text"></label>
+          <label class="base-label" for="confirmation">Você quer mesmo abrir este presente? <input id="confirmation" class="base-input" type="text"></label>
+        </div>
       </div>
       <div class="sidebar">
         <span class="page-sidebar">Página 2/2</span>
-        <button class="next-page">Finalizar</button>
+        <button class="form-btn finalize">Finalizar</button>
       </div>
     </form>
     `
   );
+
+  secondFormValidationEvent();
 };
 
 // First and second form data validation
 
 const firstFormValidationEvent = () => {
-  const formElement = document.getElementById("main-form");
+  const formElement = document.querySelector(".main-form");
+  const nextPageBtn = document.querySelector(".next-page");
 
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    getAndValidateFirstFormAnswers();
-
-    genSecondForm();
   });
+
+  nextPageBtn.addEventListener("click", getAndValidateFirstFormAnswers);
 };
 
 const secondFormValidationEvent = () => {
-  const formElement = document.getElementById("main-form");
+  const formElement = document.querySelector(".main-form");
+  const finalizeBtn = document.querySelector(".finalize");
 
   formElement.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    getAndValidateFirstFormAnswers();
   });
+
+  finalizeBtn.addEventListener("click", getAndValidateSecondFormAnswers);
 };
 
 // Input values
@@ -96,7 +99,7 @@ const getAndValidateFirstFormAnswers = () => {
     firstName: "isabelly",
     secondName: "coração",
     favMeadow: "lasanha",
-    beautyLevel: 11,
+    beautyLevel: "11",
   };
 
   const formAnswers = {
@@ -121,9 +124,9 @@ const getAndValidateFirstFormAnswers = () => {
   if (formAnswers.firstName === correctAnswers.firstName) {
     if (formAnswers.favMeadow === correctAnswers.favMeadow) {
       console.log(1111);
-      if (formAnswers.secondName !== "Coração") {
+      if (formAnswers.secondName !== correctAnswers.secondName) {
         console.log("fasdfsafadsfasdfdsadafdfsdf");
-        if (formAnswers.beautyLevel !== 11) {
+        if (formAnswers.beautyLevel !== correctAnswers.beautyLevel) {
           createPopupInfoAndShow(
             "Erro",
             "Só isso de beleza? Não é possível...",
@@ -133,16 +136,24 @@ const getAndValidateFirstFormAnswers = () => {
           closePopupImg.addEventListener("click", showAnotherPopup);
 
           inputElements[1].value = "Coração";
-          inputElements[3].value = 11;
+          inputElements[3].value = "11";
+
+          const nextPageBtn = document.querySelector(".next-page");
+
+          nextPageBtn.addEventListener("click", () => {
+            genSecondForm();
+          });
+          return false;
         }
       } else {
-        if (formAnswers.beautyLevel === 11) {
-          console.log();
+        if (formAnswers.beautyLevel === correctAnswers.beautyLevel) {
           createPopupInfoAndShow(
             "Incrível",
-            "Como você acertou todas as respostas? Deve ser ela",
+            "Como você acertou todas as respostas?",
             "check"
           );
+
+          genSecondForm();
         }
       }
     } else {
@@ -175,6 +186,52 @@ const showAnotherPopup = () => {
 
 const getAndValidateSecondFormAnswers = () => {
   const inputElements = document.querySelectorAll(".base-input");
+
+  const correctAnswers = {
+    favoriteMusic: "p do pecado",
+    myFavMeadow: "carbonara",
+  };
+
+  const formAnswers = {
+    favoriteMusic: inputElements[0].value.toLowerCase(),
+    myFavMeadow: inputElements[1].value.toLowerCase(),
+  };
+
+  if (formAnswers.favoriteMusic === correctAnswers.favoriteMusic) {
+    if (formAnswers.myFavMeadow === correctAnswers.myFavMeadow) {
+      if (inputElements[2].value.toLowerCase() === "sim") {
+        if (!inviteControl) {
+          createPopupInfoAndShow("Erro", "Então isso é um não?", "error");
+
+          inputElements[2].value = "NÃO";
+
+          inviteControl = true;
+        } else {
+          const finalizeBtn = document.querySelector(".finalize");
+
+          inputElements[2].value = "🥰";
+          finalizeBtn.innerText = "Carregando...";
+
+          window.setTimeout(() => {
+            window.location.replace("./pages/invite/index.html");
+          }, 2000);
+        }
+      } else if (inputElements[2].value.toLowerCase() === "não") {
+      }
+    } else {
+      createPopupInfoAndShow(
+        "Erro",
+        "Respostas incorretas... tente de novo.",
+        "error"
+      );
+    }
+  } else {
+    createPopupInfoAndShow(
+      "Erro",
+      "Respostas incorretas... tente de novo.",
+      "error"
+    );
+  }
 };
 
 export { genFirstForm, genSecondForm };
